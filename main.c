@@ -23,7 +23,12 @@
 // Use project enums instead of #define for ON and OFF.
 
 #include <xc.h>
+#include "UART.h"
+
+#define _XTAL_FREQ 20000000
 
 void main(void) {
+    USART_Init()
+    
     return;
 }
