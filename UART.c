@@ -1,6 +1,6 @@
 /*
  * File:   UART.c
- * Author: Usuario
+ * Author: Samuel Marroquín Isaza
  *
  * Created on May 17, 2026, 9:21 PM
  */
@@ -9,8 +9,8 @@
 #include <xc.h>
 
 void USART_Init() {
-    TRISC6 = 0;
-    TRISC7 = 1;
+    TRISC6 = 0; //Establece el pin TX como salida
+    TRISC7 = 1; //Establece el pin RX como entrada
 
     SPBRG = 129;
 
@@ -24,6 +24,10 @@ void USART_Write(char data) {
 }
 
 char USART_Read() {
+    if (OERR) {          // Error de overrun
+        CREN = 0;
+        CREN = 1;        // Reset del receptor
+    }
     while(!RCIF);
     return RCREG;
 }
