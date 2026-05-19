@@ -8,7 +8,7 @@
 
 #include <xc.h>
 
-void USART_Init() {
+void UART_Init() {
     TRISC6 = 0; //Establece el pin TX como salida
     TRISC7 = 1; //Establece el pin RX como entrada
 
@@ -18,12 +18,12 @@ void USART_Init() {
     RCSTA = 0b10010000;
 }
 
-void USART_Write(char data) {
+void UART_Write(char data) {
     while(!TXIF);
     TXREG = data;
 }
 
-char USART_Read() {
+char UART_Read() {
     if (OERR) {          // Error de overrun
         CREN = 0;
         CREN = 1;        // Reset del receptor

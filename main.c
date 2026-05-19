@@ -29,15 +29,19 @@
 #define _XTAL_FREQ 20000000
 
 void main(void) {
-    USART_Init();
+    UART_Init();
     TRISB=0;
     while(1){
-        char dato =USART_Read();
+        char dato =UART_Read();
         if(dato == 'a'){
             RB0=1;
+            UART_Write('O');
+            UART_Write('k');
         }
         else if(dato == 'b'){
             RB0=0;
+            UART_Write('O');
+            UART_Write('k');
         }
     }
 }
